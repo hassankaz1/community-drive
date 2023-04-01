@@ -40,7 +40,8 @@ html {
     padding: 0 20px;
     /* background: #e9e9e9; */
     /* background-image: linear-gradient(rgb(255, 205, 112), rgb(255, 205, 144)); */
-    background-image: url("https://e0.pxfuel.com/wallpapers/117/476/desktop-wallpaper-leaves-green-plant-aesthetic-nature-background-green.jpg");
+    background-image: url("https://events.wbcsd.org/virtual-meetings/wp-content/uploads/2021/07/Nature-is-at-a-tipping-point.-Businesses-are-calling-on-governments-to-adopt-policies-to-reverse-nature-loss-in-this-decade_i1140.jpg");
+    background-size: cover;
     display: flex;
 }
 
@@ -58,6 +59,7 @@ html {
     justify-content: center;
     background: rgba(0, 0, 0);
     box-shadow: 5px 10px 15px rgba(0, 0, 0, 0.8);
+    border-radius: 25px;
 }
 
 
