@@ -2,6 +2,9 @@ import React, { useContext } from 'react'
 import { AuthContext } from '../../App';
 import { db } from '../../firebase';
 import { doc, updateDoc } from 'firebase/firestore';
+import completeTask from "../../Nfts/Tasks/TaskCompleteNft"
+import "./TaskModal.css"
+
 
 const TaskModal = ({ setTaskModalOpen, task }) => {
     const {
@@ -52,7 +55,7 @@ const TaskModal = ({ setTaskModalOpen, task }) => {
                     <form >
 
                         <div className="form-inputs">
-                            <img src={image} />
+                            <img className='pic' src={image} />
                         </div>
 
 
