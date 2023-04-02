@@ -1,8 +1,15 @@
-import React from 'react'
+import { Button } from '@mui/material';
+import { color } from '@mui/system';
+import { click } from '@testing-library/user-event/dist/click';
+import { Trash } from 'phosphor-react';
+import React, { useContext } from 'react'
+import { AuthContext } from '../../../App';
+import { deleteDoc, doc } from 'firebase/firestore';
+import { db } from '../../../firebase';
 import "./TaskCard.css"
 
-const TaskCard = ({ task, setTaskModalOpen, setCurrentTask }) => {
-
+const TaskCard = ({ task, setTaskModalOpen, setCurrentTask, setNum }) => {
+    const { currentUser } = useContext(AuthContext);
     const { deadline, description, title, image, completed, author, id, link, created_at, submission, picked_up } = task
     let news = new Date(deadline);
 
@@ -16,7 +23,12 @@ const TaskCard = ({ task, setTaskModalOpen, setCurrentTask }) => {
         setCurrentTask(task)
 
         setTaskModalOpen(true)
+    }
 
+    const handleDelete = async (e) => {
+        e.preventDefault()
+        await deleteDoc(doc(db, "tasks", id));
+        setNum(Math.random())
     }
 
 
@@ -33,6 +45,12 @@ const TaskCard = ({ task, setTaskModalOpen, setCurrentTask }) => {
                 <div class="project-box-content-header">
                     <p class="box-content-header">{title}</p>
                     <p class="box-content-subheader">{completed ? "completed" : "incomplete"}</p>
+                    {currentUser.company &&
+
+                        <Button onClick={handleDelete}>
+                            <Trash />
+                        </Button>
+                    }
                 </div>
 
                 <div class="project-box-footer">

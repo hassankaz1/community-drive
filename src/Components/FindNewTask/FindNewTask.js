@@ -52,7 +52,7 @@ const FindNewTask = ({ freeTask, setNum }) => {
             <h1>
                 Find New tasks
             </h1>
-            <div class="project-boxes jsListView">
+            <div className="project-boxes jsListView">
 
                 <FreeTaskList tasks={freeTask} setNum={setNum} />
             </div>

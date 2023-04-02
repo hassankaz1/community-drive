@@ -167,7 +167,7 @@ const Dashboard = () => {
                         <div className="project-boxes jsGridView">
 
 
-                            {tasks.length > 0 ? (<TaskList setCurrentTask={setCurrentTask} setTaskModalOpen={setTaskModalOpen} tasks={tasks} ></TaskList>) : (<></>)}
+                            {tasks.length > 0 ? (<TaskList setNum={setNum} setCurrentTask={setCurrentTask} setTaskModalOpen={setTaskModalOpen} tasks={tasks} ></TaskList>) : (<></>)}
 
                         </div>
 

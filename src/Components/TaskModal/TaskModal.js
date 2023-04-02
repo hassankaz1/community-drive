@@ -1,10 +1,26 @@
 import React, { useContext } from 'react'
 import { AuthContext } from '../../App';
+import { db } from '../../firebase';
+import { doc, updateDoc } from 'firebase/firestore';
 
 const TaskModal = ({ setTaskModalOpen, task }) => {
-    const { deadline, description, title, image, author, id, link, created_at, submission, picked_up } = task
+    const { deadline, description, title, image, author, id, link, created_at, submission, picked_up, approved } = task
     const { currentUser } = useContext(AuthContext);
     const { username, profilepic, company, email, uid } = currentUser
+
+    console.log(submission)
+
+    const handleFinishTask = async (e) => {
+        e.preventDefault();
+
+        const taskRef = doc(db, "tasks", id);
+
+        await updateDoc(taskRef, {
+            submission: currentUser.uid
+        })
+
+        setTaskModalOpen(false)
+    }
 
     return (
         <div className="modalBackground">
@@ -36,13 +52,20 @@ const TaskModal = ({ setTaskModalOpen, task }) => {
                         </div>
                         <div>
                             {
-                                company &&
+                                company && !approved && submission &&
                                 <button className="newdatebtn eventbtn" type="submit">Verify Submission</button>
                             }
 
                             {
-                                !company &&
-                                <button className="newdatebtn eventbtn com" type="submit">Submit</button>
+                                !company && !submission &&
+                                <button className="newdatebtn eventbtn com" onClick={handleFinishTask} type="submit">Submit</button>
+                            }
+
+                            {
+                                !company && !approved && submission &&
+                                <div>
+                                    Approval Pending
+                                </div>
                             }
                         </div>
                     </form>

@@ -17,9 +17,10 @@ const NewEvent = ({ setOpenModal, creator }) => {
         let created_at = new Date()
         let submission = null
         let picked_up = null
+        let approved = false
 
         const formData = {
-            title, description, image, deadline, creator, created_at, submission, picked_up
+            title, description, image, deadline, creator, created_at, submission, picked_up, approved
         }
 
         console.log(formData)
