@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { AuthContext } from "../../App";
-import completeTask from "../../Nfts/Tasks/TaskCompleteNft";
+import { db } from "../../firebase";
+import { doc, updateDoc } from "firebase/firestore";
 
 const TaskModal = ({ setTaskModalOpen, task }) => {
   const {
@@ -14,13 +15,24 @@ const TaskModal = ({ setTaskModalOpen, task }) => {
     created_at,
     submission,
     picked_up,
+    approved,
   } = task;
   const { currentUser } = useContext(AuthContext);
   const { username, profilepic, company, email, uid } = currentUser;
 
-  (async () => {
-    await completeTask(title, description, image, uid);
-  })();
+  console.log(submission);
+
+  const handleFinishTask = async (e) => {
+    e.preventDefault();
+
+    const taskRef = doc(db, "tasks", id);
+
+    await updateDoc(taskRef, {
+      submission: currentUser.uid,
+    });
+
+    setTaskModalOpen(false);
+  };
 
   return (
     <div className="modalBackground">
@@ -46,16 +58,30 @@ const TaskModal = ({ setTaskModalOpen, task }) => {
               <div className="pickdatelabel">{description}</div>
             </div>
             <div>
-              {company && (
-                <button className="newdatebtn eventbtn" type="submit">
+              {company && !approved && submission && (
+                <button
+                  className="newdatebtn eventbtn"
+                  type="submit"
+                  onClick={async () => {
+                    await completeTask(title, description, image, uid);
+                  }}
+                >
                   Verify Submission
                 </button>
               )}
 
-              {!company && (
-                <button className="newdatebtn eventbtn com" type="submit">
+              {!company && !submission && (
+                <button
+                  className="newdatebtn eventbtn com"
+                  onClick={handleFinishTask}
+                  type="submit"
+                >
                   Submit
                 </button>
+              )}
+
+              {!company && !approved && submission && (
+                <div>Approval Pending</div>
               )}
             </div>
           </form>
