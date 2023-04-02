@@ -1,70 +1,65 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# CommunityCoin
+Our team hoped to build a project to benefit the entire community while utilizing technologies such as the Verbwire API. One of the largest problems with modern-day community service is lack of interest, and we realized that we could incentivize people of our generation through the usage of NFTs and a reward system.
 
-## Available Scripts
+## What it does
+Community Coin is a platform that gamifies community service, making it more attractive to people of a younger age. Users can create community service tasks, such as cleaning parks or donating to charities, and other users can participate and complete these tasks. An AI model determines the difficulty of the tasks based on their descriptions. When these tasks are both completed by the users and verified by the task creators, the platform generates an NFT (non-fungible token) for the participants. These NFTs are of varying levels of scarcity, and the value of a NFT is determined randomly, but the probability that the NFT will be scarce is higher if the task was more difficult. Users can combine these NFTs to create more valuable NFTs, trade with each other, and sell/buy these NFTs with real-world money.
 
-In the project directory, you can run:
+## Team Members
+[Garv Sehgal](https://www.linkedin.com/in/garv-s-64b238241/)
 
-### `npm start`
+[Anthony Poon](https://www.linkedin.com/in/anthonypoon12/)
+[Joshua Lathan]()
+[Hassan Kazi](https://www.linkedin.com/in/hassan-kaz1/)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
 
-### `npm test`
+# Composition
+## Technologies used
+* FrontEnd
+    - React
+* Backend
+    - Firebase
+    - (DB) Firestore
+* Verbwire API 
+* Pretrained ML Model GPT-3
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
+# How It Works
+## Login/Signup
+Users are greeted with a login/signup page. If account exists, they may log in normally. If they are new to the application, the user has the option to sign up. They can choose to sign up as a local community company (Park, Beach) or a community user.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Error messages will display referencing the mistake the user makes with password or email.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+<p align="center">
+  <img src="https://github.com/hassankaz1/community_coin/blob/master/demo/login-signup.gif" alt="animated" />
+</p>
 
-### `npm run eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Company Side - Create a Task
+Companies can create tasks via create task button on dashboard, specifying a title, description and deadline. Once submitted, they will await for someone to finish the task and they may verify to reward helper with a NFT
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+<p align="center">
+  <img src="https://github.com/hassankaz1/community_coin/blob/master/demo/create_new_task.gif" alt="animated" />
+</p>
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## User Side - Pick Up tasks
+On user dashboard, they may view all tasks they have picked up and completed. Right side of their dashboard displays all available tasks looking for user help. They may add these tasks under their responsibilities.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+<p align="center">
+  <img src="https://github.com/hassankaz1/community_coin/blob/master/demo/user_new_t.gif" alt="animated" />
+</p>
 
-## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Challenges we ran into
+We faced several challenges during the development process, including using new technologies, understanding public demand, and balancing the workload among team members.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Accomplishments that we're proud of
+We are proud to have built a platform that could potentially encourage younger people to engage in community service. Additionally, we are proud to have utilized new technologies such as NFTs and AI models to create an innovative solution.
 
-### Code Splitting
+## What we learned
+Through this project, we learned how to use new technologies such as the Verbwire API and how to utilize AI models to determine the difficulty of tasks. We also learned about the challenges that come with balancing a team's workload and understanding public demand.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## What's next for Community Coin
+We hope to continue improving our platform by adding new features such as a more comprehensive NFT marketplace and social features. Additionally, we hope to work on marketing and increasing public interest in the platform to encourage more people to engage in community service.
