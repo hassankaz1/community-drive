@@ -16,6 +16,8 @@ import { Divider } from '@mui/material';
 const Dashboard = () => {
     const { currentUser } = useContext(AuthContext);
     const [modalOpen, setModalOpen] = useState(false);
+    const [total, setTotal] = useState(0)
+    const [approv, setApprov] = useState(0)
     const [taskModalOpen, setTaskModalOpen] = useState(false);
     const [currentTask, setCurrentTask] = useState(null);
     const [freeTask, setFreeTask] = useState([]);
@@ -26,6 +28,8 @@ const Dashboard = () => {
 
     useEffect(() => {
         async function getCompanyTasks() {
+            let all = 0
+            let completed = 0
             const eventsRef = collection(db, "tasks");
             const q = query(eventsRef, where("creator", "==", uid));
 
@@ -33,14 +37,24 @@ const Dashboard = () => {
 
             const ts = []
             querySnapshot.forEach((doc) => {
+                all += 1
+
                 let data = doc.data()
+                if (data.approved) {
+                    completed += 1
+                }
                 data.id = doc.id
                 ts.push(data)
             });
             setTasks(ts)
+
+            setTotal(all)
+            setApprov(completed)
         }
 
         async function getUserTasks() {
+            let all = 0
+            let completed = 0
             const eventsRef = collection(db, "tasks");
             const q = query(eventsRef, where("picked_up", "==", uid));
 
@@ -48,11 +62,19 @@ const Dashboard = () => {
 
             const ts = []
             querySnapshot.forEach((doc) => {
+                all += 1
+
                 let data = doc.data()
+                if (data.approved) {
+                    completed += 1
+                }
                 data.id = doc.id
                 ts.push(data)
             });
             setTasks(ts)
+
+            setTotal(all)
+            setApprov(completed)
 
         }
 
@@ -151,15 +173,15 @@ const Dashboard = () => {
                         <div className="projects-section-line">
                             <div className="projects-status">
                                 <div className="item-status">
-                                    <span className="status-number">{3}</span>
+                                    <span className="status-number">{total - approv}</span>
                                     <span className="status-type">In Progress</span>
                                 </div>
                                 <div className="item-status">
-                                    <span className="status-number">{1}</span>
+                                    <span className="status-number">{approv}</span>
                                     <span className="status-type">Completed</span>
                                 </div>
                                 <div className="item-status">
-                                    <span className="status-number">{4}</span>
+                                    <span className="status-number">{total}</span>
                                     <span className="status-type">Total Projects</span>
                                 </div>
                             </div>
@@ -207,7 +229,7 @@ const Dashboard = () => {
                             <Divider variant="middle" />
 
                             <div className="message-content">
-                                <button className="fnew editinfo" onClick={handleSignOut}>Sign Out</button>
+                                <button className="fnew editinfo sout" onClick={handleSignOut}>Sign Out</button>
                             </div>
 
                             <Divider variant="middle" />

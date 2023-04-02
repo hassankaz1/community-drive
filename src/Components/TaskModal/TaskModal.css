@@ -198,3 +198,8 @@ button.com:hover {
     color: #50C878;
     border: 2px solid #50C878;
 }
+
+img.pic {
+    max-width: 40vw;
+    max-height: 200vh;
+}

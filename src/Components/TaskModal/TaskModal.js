@@ -2,6 +2,7 @@ import React, { useContext } from 'react'
 import { AuthContext } from '../../App';
 import { db } from '../../firebase';
 import { doc, updateDoc } from 'firebase/firestore';
+import "./TaskModal.css"
 
 const TaskModal = ({ setTaskModalOpen, task }) => {
     const { deadline, description, title, image, author, id, link, created_at, submission, picked_up, approved } = task
@@ -41,7 +42,7 @@ const TaskModal = ({ setTaskModalOpen, task }) => {
                     <form >
 
                         <div className="form-inputs">
-                            <img src={image} />
+                            <img className='pic' src={image} alt="https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.pinterest.com%2Fadinaiqbl%2Fdefault-icon-meme-pfp%2F&psig=AOvVaw3t329wmOPEpNQB40FwvyUE&ust=1680501008910000&source=images&cd=vfe&ved=0CA8QjRxqFwoTCIDkrJ_Aiv4CFQAAAAAdAAAAABAE" />
                         </div>
 
 
