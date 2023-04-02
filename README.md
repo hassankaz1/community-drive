@@ -53,6 +53,13 @@ On user dashboard, they may view all tasks they have picked up and completed. Ri
   <img src="https://github.com/hassankaz1/community_coin/blob/master/demo/user_new_t.gif" alt="animated" />
 </p>
 
+### Reward
+
+Once the user submits that they have finished the task, the respective company that posted the task will verify the task has been completed and will reward the user with an NFT. On the user dashboard they will see the rarity of the NFT recieved. 
+
+<p align="center">
+  <img src="https://github.com/hassankaz1/community_coin/blob/master/demo/nft_rewarded.png" alt="animated" />
+</p>
 
 ## Challenges we ran into
 We faced several challenges during the development process, including using new technologies, understanding public demand, and balancing the workload among team members.

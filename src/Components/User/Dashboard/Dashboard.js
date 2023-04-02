@@ -161,7 +161,7 @@ const Dashboard = () => {
 
     return (
         <>
-            {taskModalOpen && <TaskModal setTaskModalOpen={setTaskModalOpen} task={currentTask} />}
+            {taskModalOpen && <TaskModal setTaskModalOpen={setTaskModalOpen} task={currentTask} setNum={setNum} />}
             {company && modalOpen && <NewEvent setOpenModal={setModalOpen} creator={uid} />}
             <div className="app-container">
                 <div className="app-content">
