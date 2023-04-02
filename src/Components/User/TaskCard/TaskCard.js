@@ -10,7 +10,7 @@ import "./TaskCard.css"
 
 const TaskCard = ({ task, setTaskModalOpen, setCurrentTask, setNum }) => {
     const { currentUser } = useContext(AuthContext);
-    const { deadline, description, title, image, completed, author, id, link, created_at, submission, picked_up } = task
+    const { deadline, description, title, image, completed, author, id, link, created_at, submission, picked_up, approved } = task
     let news = new Date(deadline);
 
     console.log(new Date(created_at))
@@ -34,7 +34,7 @@ const TaskCard = ({ task, setTaskModalOpen, setCurrentTask, setNum }) => {
 
     return (
         <div class="project-box-wrapper">
-            <div class="project-box" style={{ backgroundColor: completed ? "#c8f7dc" : "#fee4cb" }}>
+            <div class="project-box" style={{ backgroundColor: approved ? "#c8f7dc" : "#fee4cb" }}>
                 <div class="project-box-header">
                     {/* <span>{created_at}</span> */}
                     <div class="more-wrapper">
@@ -44,7 +44,7 @@ const TaskCard = ({ task, setTaskModalOpen, setCurrentTask, setNum }) => {
                 </div>
                 <div class="project-box-content-header">
                     <p class="box-content-header">{title}</p>
-                    <p class="box-content-subheader">{completed ? "completed" : "incomplete"}</p>
+                    <p class="box-content-subheader">{approved ? "completed" : "incomplete"}</p>
                     {currentUser.company &&
 
                         <Button onClick={handleDelete}>
@@ -55,9 +55,9 @@ const TaskCard = ({ task, setTaskModalOpen, setCurrentTask, setNum }) => {
 
                 <div class="project-box-footer">
                     <div class="participants">
-                        <button onClick={handleOpenModal} className={completed ? "com editinf" : "editinf"}>view more</button>
+                        <button onClick={handleOpenModal} className={approved ? "com editinf" : "editinf"}>view more</button>
                     </div>
-                    <div class="days-left" style={{ color: completed ? "#34c471" : "#ff942e" }}>
+                    <div class="days-left" style={{ color: approved ? "#34c471" : "#ff942e" }}>
                         {daysLeft} Days Left
                     </div>
                 </div>
