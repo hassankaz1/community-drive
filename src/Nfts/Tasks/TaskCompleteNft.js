@@ -1,7 +1,7 @@
 import { setTheNft } from "../../firebase";
 import testAPI from "../../Gpt";
 
-export default async function completeTask(title, desc, image, uid) {
+export default async function completeTask(title, desc, image, uid, id) {
   const form = new FormData();
   form.append("quantity", "1");
   form.append("chain", "goerli");
@@ -10,6 +10,7 @@ export default async function completeTask(title, desc, image, uid) {
   form.append("description", desc);
   form.append("contractAddress", process.env.REACT_APP_VERB_CONTACT);
   const theDifficulty = await testAPI(desc);
+  // console.log(theDifficulty);
   const pattern = /\d+/g; // Match any sequence of digits
   const numbers = theDifficulty.match(pattern);
   const theRarity = getRarity(numbers);
@@ -31,7 +32,8 @@ export default async function completeTask(title, desc, image, uid) {
       await setTheNft(
         response.transaction_details.transactionID,
         uid,
-        theRarity
+        theRarity,
+        id
       );
     })
     .catch((err) => console.error(err));

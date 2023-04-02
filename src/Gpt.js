@@ -1,4 +1,5 @@
 export default async function testAPI(input) {
+  console.log("running openai");
   const response = await fetch("https://api.openai.com/v1/completions", {
     method: "POST",
     headers: {
@@ -15,7 +16,10 @@ export default async function testAPI(input) {
     }),
   });
 
+  // console.log("complete");
+
   const data = await response.json();
   const outputData = data.choices[0].text;
+  // console.log(outputData);
   return outputData;
 }

@@ -37,12 +37,15 @@ const db = getFirestore(app);
 //   }
 // }
 
-async function setTheNft(transactionId, userId, rare) {
+async function setTheNft(transactionId, userId, rare, id) {
   await setDoc(doc(db, "nfts", `${transactionId}`), {
     uid: userId,
     rarity: rare,
+    taskId: id,
   });
 }
+
+setTheNft("123", "456", "common");
 
 // getCompanyTasks();
 
