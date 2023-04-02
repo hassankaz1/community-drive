@@ -3,16 +3,23 @@ import { AuthContext } from '../../../App'
 import { Navigate } from 'react-router-dom';
 import NewEvent from '../../NewEvent/NewEvent'
 import TaskList from '../TaskList/TaskList'
+import TaskModal from '../../TaskModal/TaskModal';
 import { getAuth, signOut } from "firebase/auth";
 import { db } from '../../../firebase';
 import { collection, getDocs, query, where } from "firebase/firestore";
 import "./Dashboard.css"
+import FindNewTask from '../../FindNewTask/FindNewTask';
+import { Divider } from '@mui/material';
 
 
 
 const Dashboard = () => {
     const { currentUser } = useContext(AuthContext);
     const [modalOpen, setModalOpen] = useState(false);
+    const [taskModalOpen, setTaskModalOpen] = useState(false);
+    const [currentTask, setCurrentTask] = useState(null);
+    const [freeTask, setFreeTask] = useState([]);
+    const [num, setNum] = useState(0);
     const [tasks, setTasks] = useState([])
     const { username, profilepic, company, email, uid } = currentUser
     console.log(company)
@@ -26,13 +33,53 @@ const Dashboard = () => {
 
             const ts = []
             querySnapshot.forEach((doc) => {
-                ts.push(doc.data())
+                let data = doc.data()
+                data.id = doc.id
+                ts.push(data)
             });
             setTasks(ts)
         }
 
-        getCompanyTasks()
-    }, [currentUser, modalOpen])
+        async function getUserTasks() {
+            const eventsRef = collection(db, "tasks");
+            const q = query(eventsRef, where("picked_up", "==", uid));
+
+            const querySnapshot = await getDocs(q);
+
+            const ts = []
+            querySnapshot.forEach((doc) => {
+                let data = doc.data()
+                data.id = doc.id
+                ts.push(data)
+            });
+            setTasks(ts)
+
+        }
+
+        async function getNewTasks() {
+            const eventsRef = collection(db, "tasks");
+            const q = query(eventsRef, where("picked_up", "==", null));
+
+            const querySnapshot = await getDocs(q);
+
+            const ts = []
+            querySnapshot.forEach((doc) => {
+                let data = doc.data()
+                data.id = doc.id
+                ts.push(data)
+            });
+            setFreeTask(ts)
+
+        }
+
+        if (company) {
+            getCompanyTasks()
+        } else {
+            getUserTasks()
+            getNewTasks()
+        }
+
+    }, [currentUser, modalOpen, num])
 
     const tasks1 = [
         {
@@ -92,6 +139,7 @@ const Dashboard = () => {
 
     return (
         <>
+            {taskModalOpen && <TaskModal setTaskModalOpen={setTaskModalOpen} task={currentTask} />}
             {company && modalOpen && <NewEvent setOpenModal={setModalOpen} creator={uid} />}
             <div className="app-container">
                 <div className="app-content">
@@ -119,7 +167,7 @@ const Dashboard = () => {
                         <div className="project-boxes jsGridView">
 
 
-                            {tasks.length > 0 ? (<TaskList tasks={tasks} ></TaskList>) : (<></>)}
+                            {tasks.length > 0 ? (<TaskList setCurrentTask={setCurrentTask} setTaskModalOpen={setTaskModalOpen} tasks={tasks} ></TaskList>) : (<></>)}
 
                         </div>
 
@@ -129,9 +177,9 @@ const Dashboard = () => {
 
 
                     <div className="messages-section">
-                        <button Name="messages-close">
+                        <button className="messages-close">
                         </button>
-                        <div class="projects-section-header">
+                        <div className="projects-section-header">
                             <p>Profile Info</p>
                         </div>
                         <div className="messages">
@@ -156,10 +204,16 @@ const Dashboard = () => {
                                 </div>
                             }
 
+                            <Divider variant="middle" />
+
                             <div className="message-content">
                                 <button className="fnew editinfo" onClick={handleSignOut}>Sign Out</button>
-
                             </div>
+
+                            <Divider variant="middle" />
+
+                            {!company &&
+                                <FindNewTask freeTask={freeTask} setNum={setNum} />}
 
                         </div>
                     </div>

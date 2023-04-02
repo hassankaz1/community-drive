@@ -7,15 +7,19 @@ import { collection, addDoc } from "firebase/firestore";
 
 const NewEvent = ({ setOpenModal, creator }) => {
 
+
     const handleLinkSubmit = async (e) => {
         e.preventDefault();
         let title = e.target.title.value;
         let description = e.target.description.value
         let image = e.target.image.value
         let deadline = e.target.deadline.value
+        let created_at = new Date()
+        let submission = null
+        let picked_up = null
 
         const formData = {
-            title, description, image, deadline, creator
+            title, description, image, deadline, creator, created_at, submission, picked_up
         }
 
         console.log(formData)
