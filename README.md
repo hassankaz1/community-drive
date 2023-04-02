@@ -9,7 +9,9 @@ Community Coin is a platform that gamifies community service, making it more att
 [Garv Sehgal](https://www.linkedin.com/in/garv-s-64b238241/)
 
 [Anthony Poon](https://www.linkedin.com/in/anthonypoon12/)
-[Joshua Lathan]()
+
+[Joshua Lathan](https://www.linkedin.com/in/joshua-latham-76140126b/)
+
 [Hassan Kazi](https://www.linkedin.com/in/hassan-kaz1/)
 
 
